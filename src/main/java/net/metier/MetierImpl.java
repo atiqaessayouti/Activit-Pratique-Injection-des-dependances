@@ -1,26 +1,29 @@
 package net.metier;
 
 import net.dao.IDao;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component("metier")
 public class MetierImpl implements IMetier {
 
-    private IDao dao; // couplage faible
+    @Autowired
+    private IDao dao;
+
     public MetierImpl() {
     }
 
     public MetierImpl(IDao dao) {
         this.dao = dao;
     }
+
     @Override
     public double calcul() {
         double t = dao.getData();
-        double res =t*12*Math.PI;
-        return res;
+        return t * 12 * Math.PI;
     }
 
     public void setDao(IDao dao) {
         this.dao = dao;
     }
-
-
 }
